@@ -3,7 +3,7 @@ function link = ottimizza_link(p, theta)
     [joint_lim, link_lim] = inizializza_limiti();
     
     %Range di variazione dei link nel metodo di ottimizzazione
-    passo_crescita=0.5;
+    passo_crescita=1;
 
     %Vettori vuoti
     link_scelti = [];
@@ -38,15 +38,15 @@ function link = ottimizza_link(p, theta)
 
 
                         %Ciclo if
-                        %& se check è vero inserisco in link a1,a2,a3 e se voglio
-                        %conservare anche quelli precedenti (dove c'è il check vero)
+                        %& se check Ã¨ vero inserisco in link a1,a2,a3 e se voglio
+                        %conservare anche quelli precedenti (dove c'Ã¨ il check vero)
                         %scrivo links=[links; a1...]
                         if check
                             link_scelti = cat(1, link_scelti, [a1, a2, a3, a4]);
                             %& devo poi realizzare quella funzione che mi va a
                             % minimizzare quelle funzioni di costo che ho scelto prima
 
-                            %& prima funzione di costo è la somma dei link quindi creo
+                            %& prima funzione di costo Ã¨ la somma dei link quindi creo
                             %una variabile contenente le somme di tutti i link
                             sum_link = a1+a2+a3+a4;
                             somma_link = cat(1, somma_link, sum_link);
@@ -56,7 +56,7 @@ function link = ottimizza_link(p, theta)
 
                             differenza_link = cat(1, differenza_link, max_1234);
                         end
-                        %& c'è _ .Qui metto tutte le combinazioni che ho trovato anche
+                        %& c'Ã¨ _ .Qui metto tutte le combinazioni che ho trovato anche
                         %quelle che non vanno bene
                         link_scartati = cat(1, link_scartati, [a1, a2, a3, a4]);
                     end
