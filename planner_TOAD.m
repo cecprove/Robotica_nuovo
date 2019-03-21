@@ -14,7 +14,7 @@ function [xd,xdd,phi,phit]=planner_TOAD(punto, tempo, phi, t, circonferenza1, ci
     r2 = circonferenza2.raggio;
 
     alfa_2=deg2rad(320.95); %angolo di rotazione per il primo tratto
-    beta=deg2rad(302);
+    beta=deg2rad(268.84);
 
     if t<=ti %se ci troviamo ad un tempo inferiore a quello iniziale allora ci troviamo nella
             %configurazione iniziale sia per la posizione che per l'orientamento
@@ -50,10 +50,10 @@ function [xd,xdd,phi,phit]=planner_TOAD(punto, tempo, phi, t, circonferenza1, ci
         s_phi = a_2phi(1) * t^3 + a_2phi(2) * t^2 + a_2phi(3) * t + a_2phi(4); %legge oraria orientamento
         sdot_phi = 3 * a_2phi(1) * t^2 + 2 * a_2phi(2) * t + a_2phi(3); %derivata legge oraria orientamento
 
-        XYd = (c1' + R * [r1*cos(s/r1); r1*sin(s/r1)])'; %è la x desiderata
+        XYd = (c1' + R * [r1*cos(s/r1); r1*sin(s/r1)])'; %Ã¨ la x desiderata
         XYddot = (R * [-sin(s/r1); cos(s/r1)])';
 
-        phi_e = phi_i + (s_phi / norm(phi_f - phi_i))*(phi_f - phi_i); %è la phi desiderata
+        phi_e = phi_i + (s_phi / norm(phi_f - phi_i))*(phi_f - phi_i); %Ã¨ la phi desiderata
         phi_et = (sdot_phi / norm(phi_f - phi_i))*(phi_f - phi_i);
 
     else %se ci troviamo ad un tempo maggiore di tf siamo passati a descrivere
@@ -68,7 +68,7 @@ function [xd,xdd,phi,phit]=planner_TOAD(punto, tempo, phi, t, circonferenza1, ci
         s= a_1(1) * t^3 + a_1(2) * t^2 + a_1(3) * t + a_1(4); %legge oraria traiettoria
         %sdot=3*a_1(1)*t^2+2*a_1(2)*t+a_1(3); %derivata legge oraria
 
-        gamma=deg2rad(119);
+        gamma=deg2rad(135.58);
 
         R1=[cos(gamma) -sin(gamma);
             sin(gamma) cos(gamma)]; %& pi %matrice di rotazione per rimetterci nelle condizioni
