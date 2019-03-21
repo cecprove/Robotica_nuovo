@@ -13,7 +13,7 @@ function [xd,xdd,phi,phit]=planner_TOAD(punto, tempo, phi, t, circonferenza1, ci
     c2 = circonferenza2.centro;
     r2 = circonferenza2.raggio;
 
-    alfa_2=deg2rad(320.95); %angolo di rotazione per il primo tratto
+    alfa_2=deg2rad(180); %angolo di rotazione per il primo tratto
     beta=deg2rad(268.84);
 
     if t<=ti %se ci troviamo ad un tempo inferiore a quello iniziale allora ci troviamo nella
@@ -37,7 +37,7 @@ function [xd,xdd,phi,phit]=planner_TOAD(punto, tempo, phi, t, circonferenza1, ci
         s= a_2(1) * t^3 + a_2(2) * t^2 + a_2(3) * t + a_2(4); %legge oraria della traiettoria
         %sdot=3*a_2(1)*t^2+2*a_2(2)*t+a_2(3); %derivata della legge oraria
 
-        th = deg2rad(-70.47);
+        th = deg2rad(0);
 
         R=[cos(th) -sin(th);
             sin(th) cos(th)];
