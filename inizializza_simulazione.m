@@ -8,8 +8,8 @@ tempo.iniziale = 0;
 tempo.finale1 = 10;
 tempo.finale2 = 20;
 
-phi.iniziale = 0;
-phi.finale = pi/6;
+phi.iniziale = pi/6;
+phi.finale = 0;
 
 circonferenza1 = struct;
 circonferenza1.centro = [25 20]; %centro circonferenza

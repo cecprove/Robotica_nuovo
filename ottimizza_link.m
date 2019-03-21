@@ -19,7 +19,8 @@ function link = ottimizza_link(p, theta)
     end
 
     resolution_q=deg2rad(15);
-    iterazioni_tot = iterazioni_tot * ((joint_lim(4,2)-joint_lim(4,1))/resolution_q);
+    %iterazioni_tot = iterazioni_tot * ((joint_lim(4,2)-joint_lim(4,1))/resolution_q);
+    
     conta_iterazioni = 0;
     barra = waitbar(0,'please wait', 'Name', 'Barra di caricamento');
 
@@ -27,26 +28,30 @@ function link = ottimizza_link(p, theta)
         for a2 = link_lim(2,1) : passo_crescita : link_lim(2,2)
             for a3 = link_lim(3,1) : passo_crescita : link_lim(3,2)
                 for a4 = link_lim(4,1) : passo_crescita : link_lim(4,2)
-                    for q4 = joint_lim(4,1) : resolution_q : joint_lim(4,2)
-
-                        progress = conta_iterazioni/iterazioni_tot;
-                        waitbar(progress, barra, sprintf("Running %.1f%%", progress * 100));
-                        conta_iterazioni = conta_iterazioni + 1;
-
+                    
+                    progress = conta_iterazioni/iterazioni_tot;
+                    waitbar(progress, barra, sprintf("Running %.1f%%", progress * 100));
+                    conta_iterazioni = conta_iterazioni + 1;
+                        
+                    trovato = false;
+                    q4 = joint_lim(4,1);
+                    
+                    while q4 <= joint_lim(4,2) && ~trovato
+                    %for q4 = joint_lim(4,1) : resolution_q : joint_lim(4,2)
 
                         check = controlla_dimensioni_link(p, theta, q4, [a1,a2,a3,a4], joint_lim);
 
 
                         %Ciclo if
-                        %& se check Ã¨ vero inserisco in link a1,a2,a3 e se voglio
-                        %conservare anche quelli precedenti (dove c'Ã¨ il check vero)
+                        %& se check è vero inserisco in link a1,a2,a3 e se voglio
+                        %conservare anche quelli precedenti (dove c'è il check vero)
                         %scrivo links=[links; a1...]
                         if check
                             link_scelti = cat(1, link_scelti, [a1, a2, a3, a4]);
                             %& devo poi realizzare quella funzione che mi va a
                             % minimizzare quelle funzioni di costo che ho scelto prima
 
-                            %& prima funzione di costo Ã¨ la somma dei link quindi creo
+                            %& prima funzione di costo è la somma dei link quindi creo
                             %una variabile contenente le somme di tutti i link
                             sum_link = a1+a2+a3+a4;
                             somma_link = cat(1, somma_link, sum_link);
@@ -55,9 +60,12 @@ function link = ottimizza_link(p, theta)
                             max_1234=max([abs(a1-(sum_link)/4),abs(a2-(sum_link)/4),abs(a3-(sum_link)/4),abs(a4-(sum_link)/4)]);
 
                             differenza_link = cat(1, differenza_link, max_1234);
+                            
+                            trovato = true;
                         end
-                        %& c'Ã¨ _ .Qui metto tutte le combinazioni che ho trovato anche
+                        %& c'è _ .Qui metto tutte le combinazioni che ho trovato anche
                         %quelle che non vanno bene
+                        q4 = q4 + resolution_q;
                         link_scartati = cat(1, link_scartati, [a1, a2, a3, a4]);
                     end
                 end
