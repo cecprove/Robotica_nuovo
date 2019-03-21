@@ -6,9 +6,9 @@ function [joint_lim, link_lim] = inizializza_limiti()
         deg2rad(-90) deg2rad(90)];
     
     %Grandezza minima/massima dei link
-    link_lim=[3 20; 
-        3 20;
-        3 20; 
-        3 20];
+    link_lim=[5 18; 
+        5 18;
+        5 18; 
+        5 18];
 
 end
