@@ -12,10 +12,10 @@ phi.iniziale = 0;
 phi.finale = pi/6;
 
 circonferenza1 = struct;
-circonferenza1.centro = [25 34.1]; %centro circonferenza
-circonferenza1.raggio = 15;
+circonferenza1.centro = [25 20]; %centro circonferenza
+circonferenza1.raggio = 5;
 
 circonferenza2 = struct;
-circonferenza2.centro = [25 11];
-circonferenza2.raggio = 10;
+circonferenza2.centro = [25 15.1];
+circonferenza2.raggio = 7;
 end
