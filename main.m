@@ -7,6 +7,8 @@ xd = [];
 yd = [];
 phid = [];
 
+dt = 0.05;
+
 prompt = 'Come vuoi pianificare la traiettoria? [F]or - [S]imulink: ';
 str = input(prompt,'s');
 
@@ -16,12 +18,17 @@ if strip(lower(str)) == "s"
     phiS = timeseries([phi.iniziale, phi.finale]);
     centri_circonferenzeS = timeseries([circonferenza1.centro; circonferenza2.centro]);
     raggi_circonferenzeS = timeseries([circonferenza1.raggio; circonferenza2.raggio]);
-    sim("TOAD_simulation");
-    xd = XD(:,1);
-    yd = XD(:,2);
-    phid = PHI;
+    
+    simulazione = sim("TOAD_simulation", 'StartTime',num2str(tempo.iniziale),...
+        'StopTime',num2str(tempo.finale2),...
+        'FixedStep',num2str(dt));
+    
+    xd = simulazione.XD(:,1);
+    yd = simulazione.XD(:,2);
+    phid = simulazione.PHI;
+    t = simulazione.tout;
 else
-    t = 0 : 0.05 : 20;
+    t = 0 : dt : 20;
     for i = 1 : length(t)
         [XD(i).traiettoria,XD(i).derivata,PHI(i).orientamento,PHI(i).derivata] = ...
             planner_TOAD(punto, tempo, phi, t(i), circonferenza1, circonferenza2);
