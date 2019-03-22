@@ -17,8 +17,8 @@ if strip(lower(str)) == "s"
     centri_circonferenzeS = timeseries([circonferenza1.centro; circonferenza2.centro]);
     raggi_circonferenzeS = timeseries([circonferenza1.raggio; circonferenza2.raggio]);
     sim("TOAD_simulation");
-    xd = XD(:,1,:);
-    yd = XD(:,2,:);
+    xd = XD(1,:);
+    yd = XD(2,:);
     phid = PHI;
 else
     t = 0 : 0.05 : 20;
