@@ -6,6 +6,7 @@ PHI = struct;
 xd = [];
 yd = [];
 phid = [];
+t = [];
 
 dt = 0.05;
 
