@@ -29,7 +29,7 @@ if strip(lower(str)) == "s"
     phid = simulazione.PHI;
     t = simulazione.tout;
 else
-    t = 0 : dt : tempo.finale2;
+    t = (0 : dt : tempo.finale2)';
     for i = 1 : length(t)
         [XD(i).traiettoria,XD(i).derivata,PHI(i).orientamento,PHI(i).derivata] = ...
             planner_TOAD(punto, tempo, phi, t(i), circonferenza1, circonferenza2);
