@@ -37,7 +37,7 @@ else
             planner_TOAD(punto, tempo, phi, t(i), circonferenza1, circonferenza2);
     end
     xd = XD(:,1);
-    yd = XD(:,1);
+    yd = XD(:,2);
     phid = PHI;
 end
 
