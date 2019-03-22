@@ -1,8 +1,6 @@
 clc; clear; close all;
 [punto, tempo, phi, circonferenza1, circonferenza2] = inizializza_simulazione();
 
-XD = struct;
-PHI = struct;
 xd = [];
 yd = [];
 phid = [];
@@ -30,13 +28,17 @@ if strip(lower(str)) == "s"
     t = simulazione.tout;
 else
     t = (0 : dt : tempo.finale2)';
+    XD = zeros(length(t), 2);
+    XDD = zeros(length(t), 2);
+    PHI = zeros(length(t), 1);
+    PHID = zeros(length(t),1);
     for i = 1 : length(t)
-        [XD(i).traiettoria,XD(i).derivata,PHI(i).orientamento,PHI(i).derivata] = ...
+        [XD(i,:),XDD(i,:),PHI(i),PHID(i)] = ...
             planner_TOAD(punto, tempo, phi, t(i), circonferenza1, circonferenza2);
     end
-    xd = XD(:).traiettoria(1);
-    yd = XD(:).traiettoria(2);
-    phid = PHI(:).orientamento;
+    xd = XD(:,1);
+    yd = XD(:,1);
+    phid = PHI;
 end
 
 [p, theta] = calcola_punti_traiettoria(xd, yd, phid);
