@@ -1,6 +1,6 @@
 % calcolo cinematica diretta per manipolatore planare a 4DoF
 function posa = cinematica_diretta_4gdl(q,a)
-    q12 = q(1)+q(2);
+    q12 = q(1) + q(2);
     q123 = q12 + q(3);
     q1234 = q123 + q(4);
 

@@ -1,11 +1,6 @@
 clc; clear; close all;
 [punto, tempo, phi, circonferenza1, circonferenza2] = inizializza_simulazione();
 
-xd = [];
-yd = [];
-phid = [];
-t = [];
-
 dt = 0.05;
 
 prompt = 'Come vuoi pianificare la traiettoria? [F]or - [S]imulink: ';
@@ -41,6 +36,28 @@ else
     phid = PHI;
 end
 
-[p, theta] = calcola_punti_traiettoria(xd, yd, phid);
+figure;
+plot(xd, yd, 'Linewidth',4);
 
-link = ottimizza_link(p, theta);
+if max(xd) > max(yd)
+    xlim([0, max(xd)+1]);
+else
+    ylim([0, max(yd)+1]);
+end
+axis equal
+
+
+%[p, theta] = calcola_punti_traiettoria(xd, yd, phid);
+[p, theta] = calcola_tutti_punti_traiettoria;
+
+prompt2 = '[O]ttimizzare link o [C]arica file? ';
+str2 = input(prompt2,'s');
+
+if lower(strip(str2)) == "o"
+    link = ottimizza_link(p, theta);
+else
+    load('link_migliore.mat');
+end
+
+traiettoria = [xd,yd,phid];
+prova_traiettoria(traiettoria, link, t, dt);

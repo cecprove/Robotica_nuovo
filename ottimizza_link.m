@@ -18,7 +18,7 @@ function link = ottimizza_link(p, theta)
         iterazioni_tot = iterazioni_tot * iterazioni_k;
     end
 
-    resolution_q=deg2rad(15);
+    resolution_q = deg2rad(15);
     %iterazioni_tot = iterazioni_tot * ((joint_lim(4,2)-joint_lim(4,1))/resolution_q);
     
     conta_iterazioni = 0;
